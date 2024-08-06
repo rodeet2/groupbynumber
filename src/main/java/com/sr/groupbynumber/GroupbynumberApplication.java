@@ -9,5 +9,4 @@ public class GroupbynumberApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GroupbynumberApplication.class, args);
 	}
-
 }
