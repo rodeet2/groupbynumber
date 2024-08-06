@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+    <header>
+        <!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <header>
+          <title>Group Number</title>
+          <style>
+            body, h4, h1 {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f4f4f4;
+              padding: 20px; /* Add padding to avoid content touching edges */
+            }
+            
+            h4 {
+              font-size: 18px;
+              color: #666;
+              margin-bottom: 10px;
+            }
+            
+            h1 {
+              font-size: 100px; /* Increased font size for the count number */
+              color: #007bff;
+              margin: 0;
+            }
+          </style>
+    </header>
     <body>
+        <h4>Your group number is:</h3>
         <h1 th:text="${count}">count</h1>
     </body>
     </html>

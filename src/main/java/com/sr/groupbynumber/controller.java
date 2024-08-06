@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +38,7 @@ public class controller {
     public String showGroup(@PathVariable("groupID") Integer groupID, Model model){
         String qrcodeurl ="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + "localhost:8080/"+ groupID + "/add";
         model.addAttribute("qrcodeurl", qrcodeurl); 
+        model.addAttribute("groupnumber",groupID);
         return "group_info";
     }
 
@@ -44,27 +46,23 @@ public class controller {
     public String createGroup(@PathVariable Integer groupID,RedirectAttributes redirectAttributes){
         allgroups g = groupdataService.getgroup(groupID);
         Integer count = g.getCount();
-        System.out.println("COunt is: "  + count);
         if(count >= g.getNumberIneachGroup()){
         g.setCount(count - g.getNumberIneachGroup());
         count = 1;
         }else{
          count++;
         }
-        redirectAttributes.addAttribute("myNumber", count);
         groupdataService.updateGroup(count,groupID); 
-        redirectAttributes.addAttribute("count", count);  
+        redirectAttributes.addFlashAttribute("count", count);
         return "redirect:/myNumber";
     }
 
 
     @GetMapping("/myNumber")
-    public String showNumber(@RequestParam Integer count, Model model){
+    public String showNumber(@ModelAttribute("count") Integer count, Model model){
         model.addAttribute("count", count); 
         return "myNumber";
     }
 
-    
 
-    
 }
