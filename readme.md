@@ -1,7 +1,7 @@
 
 ## Group By Number
 
-### Demo: http://35.87.119.87:8080/
+### Demo: http://groupbynumber.com/
 
 A simple web app to help create groups. It replicates the process of round-robin assignment or circular counting. Where users can scan a qr code to get their group number.
 
